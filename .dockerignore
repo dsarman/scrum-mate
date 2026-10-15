@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+.git
+private
+DESIGN.md
+README.md
+**/*.test.ts
+**/__snapshots__
+**/src/test
+.DS_Store

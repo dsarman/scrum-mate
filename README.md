@@ -34,6 +34,23 @@ Environment: `PORT` (3000), `ROOM_TTL_HOURS` (24), `SWEEP_INTERVAL_MINUTES` (10)
 
 State is in memory. A restart drops every room.
 
+## Container
+
+```sh
+docker build -t scrum-mate .
+docker run --rm -p 3000:3000 scrum-mate
+# with your own checklist:
+docker run --rm -p 3000:3000 \
+  -v "$PWD/private/team.checklist.json:/checklist.json:ro" \
+  -e CHECKLIST_FILE=/checklist.json scrum-mate
+```
+
+The image is a two-stage build: the first stage installs everything and builds all
+packages, the runtime stage installs only the server's production dependencies and
+copies the server bundle and the built web app. It runs as the unprivileged `node`
+user on port 3000 with a `/healthz` health check. State is in memory, so run exactly
+one replica.
+
 ## Your team's checklist
 
 The repository ships a generic checklist in `packages/shared/src/checklists/default.ts`.
