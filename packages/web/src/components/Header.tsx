@@ -71,7 +71,7 @@ function Participants() {
         return (
           <li key={p.id} className={[p.connected ? '' : 'offline', p.isObserver ? 'observer' : ''].join(' ')}>
             <span className="dot" />
-            <span className="name">{p.name}</span>
+            {p.id === me.id ? <MyName name={p.name} /> : <span className="name">{p.name}</span>}
             {p.isFacilitator && <span className="tag">facilitator</span>}
             {p.isObserver && <span className="tag">observer</span>}
             {p.id === me.id && <span className="tag me">you</span>}
@@ -85,5 +85,46 @@ function Participants() {
         );
       })}
     </ul>
+  );
+}
+
+/** The viewer's own name, click to rename. Enter saves, Escape cancels. */
+function MyName({ name }: { name: string }) {
+  const { send } = useRoom();
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(name);
+
+  if (!editing) {
+    return (
+      <button
+        className="name link-name"
+        title="Click to rename"
+        onClick={() => {
+          setDraft(name);
+          setEditing(true);
+        }}
+      >
+        {name}
+      </button>
+    );
+  }
+  const save = () => {
+    const trimmed = draft.trim();
+    if (trimmed && trimmed !== name) void send({ type: 'setName', name: trimmed });
+    setEditing(false);
+  };
+  return (
+    <input
+      className="name-input"
+      autoFocus
+      value={draft}
+      maxLength={60}
+      onChange={(e) => setDraft(e.target.value)}
+      onBlur={save}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') save();
+        if (e.key === 'Escape') setEditing(false);
+      }}
+    />
   );
 }

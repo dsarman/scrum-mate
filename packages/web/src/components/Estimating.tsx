@@ -7,6 +7,7 @@ export function Estimating() {
   const issue = view.issue!;
   const counting = view.participants.filter((p) => !p.isObserver);
   const votedCount = counting.filter((p) => issue.voted.includes(p.id)).length;
+  const wentThroughChecklist = Object.keys(issue.teamAnswers).length > 0 || issue.outcome !== null;
 
   return (
     <section className="estimating">
@@ -22,10 +23,11 @@ export function Estimating() {
         {isFacilitator && issue.votesRevealed && (
           <button onClick={() => void send({ type: 'revote' })}>Re-vote</button>
         )}
+        {isFacilitator && wentThroughChecklist && (
+          <button onClick={() => void send({ type: 'reopen', phase: 'consolidated' })}>Back to checklist result</button>
+        )}
         {isFacilitator && (
-          <button onClick={() => void send({ type: 'reopen', phase: issue.teamAnswers && Object.keys(issue.teamAnswers).length ? 'consolidated' : 'filling' })}>
-            Back
-          </button>
+          <button onClick={() => void send({ type: 'reopen', phase: 'filling' })}>Back to filling</button>
         )}
       </div>
 
@@ -74,7 +76,7 @@ export function Estimating() {
         </div>
       )}
 
-      {Object.keys(issue.teamAnswers).length > 0 && (
+      {wentThroughChecklist && (
         <details className="section">
           <summary>Consolidated checklist</summary>
           <ChecklistSummary />

@@ -87,6 +87,12 @@ header { border-bottom: 1px solid var(--line); background: var(--card); padding:
 .question.undecided { border-left: 4px solid var(--unclear); }
 .question.auto { opacity: 0.85; }
 .question.auto .question-head { cursor: pointer; }
+.question.flash { box-shadow: 0 0 0 3px var(--accent); transition: box-shadow 0.3s; }
+
+/* self-rename in the participant list */
+.link-name { border: none; background: none; padding: 0; font: inherit; font-weight: 500; color: var(--fg); cursor: text; border-bottom: 1px dashed var(--line); }
+.link-name:hover { border-bottom-color: var(--accent); }
+.name-input { width: 9rem; padding: 0.1rem 0.4rem; font-size: 0.9rem; }
 .question-head { display: flex; gap: 0.6rem; align-items: baseline; flex-wrap: wrap; }
 .qid { font-weight: 600; color: var(--muted); min-width: 2rem; }
 .qtext { flex: 1; font-weight: 500; }

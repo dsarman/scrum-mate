@@ -22,12 +22,39 @@ export function Consolidating() {
   const undecided = questions.filter((q) => !issue.teamAnswers[q.id]).length;
   const missingNotes = Object.values(issue.teamAnswers).filter(needsNote).length;
 
+  // Rows that still need the facilitator: undecided, or decided without a required note.
+  const openIds = questions
+    .filter((q) => {
+      const ta = issue.teamAnswers[q.id];
+      return !ta || needsNote(ta);
+    })
+    .map((q) => q.id);
+  const [lastJump, setLastJump] = useState<string | null>(null);
+
+  const jumpToNextOpen = () => {
+    if (openIds.length === 0) return;
+    const after = lastJump ? openIds.indexOf(lastJump) : -1;
+    const target = openIds[(after + 1) % openIds.length]!;
+    setLastJump(target);
+    const el = document.getElementById(`q-${target}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('flash');
+      setTimeout(() => el.classList.remove('flash'), 900);
+    }
+  };
+
   return (
     <section className="consolidating">
       <div className="toolbar">
         <span>
           {undecided} undecided · {missingNotes} missing notes
         </span>
+        {openIds.length > 0 && (
+          <button onClick={jumpToNextOpen}>
+            Next open row ({openIds.length})
+          </button>
+        )}
         {isFacilitator && (
           <>
             <button className="primary" onClick={() => void send({ type: 'finishConsolidation' })}>
@@ -72,7 +99,7 @@ function Row({ question, team }: { question: Question; team: TeamAnswer | undefi
   }));
 
   return (
-    <div className={`question ${auto ? 'auto' : ''} ${!team ? 'undecided' : ''}`}>
+    <div id={`q-${question.id}`} className={`question ${auto ? 'auto' : ''} ${!team ? 'undecided' : ''}`}>
       <div className="question-head" onClick={() => auto && setExpanded(!expanded)}>
         <span className="qid">{question.id}</span>
         <span className="qtext">{question.text}</span>
