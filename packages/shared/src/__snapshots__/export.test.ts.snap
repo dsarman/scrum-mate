@@ -1,0 +1,109 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderers > html escapes and uses real tables 1`] = `
+"<h3>Refinement Checklist — PROJ-123</h3>
+<table><thead><tr>
+<th>#</th>
+<th>Question</th>
+<th>Answer</th>
+<th>Note</th>
+</tr></thead><tbody>
+<tr><td>G1</td><td>Is the expected benefit or outcome for the user, stakeholder or system clear?</td><td>Yes</td><td></td></tr>
+<tr><td>G2</td><td>Is it clear what the ticket includes and what is out of scope?</td><td>Yes</td><td></td></tr>
+<tr><td>B1</td><td>Is the required behaviour described concretely and verifiably?</td><td>Yes</td><td></td></tr>
+<tr><td>B2</td><td>Is it clear how the system should behave in relevant edge cases?</td><td>Yes</td><td></td></tr>
+<tr><td>B3</td><td>For UI changes, is a sufficiently concrete UI/UX design available?</td><td>N/A</td><td></td></tr>
+<tr><td>T1</td><td>Are the affected systems and components known well enough to estimate?</td><td>Yes</td><td></td></tr>
+<tr><td>T2</td><td>Is the likely approach known well enough to estimate?</td><td>Yes</td><td></td></tr>
+<tr><td>T3</td><td>Are the required API and integration changes clear enough to estimate?</td><td>Yes</td><td></td></tr>
+<tr><td>T4</td><td>Are the API changes backward compatible?</td><td>No</td><td>Accepted &lt;break&gt;<br>Concern (bob): breaks | v1</td></tr>
+<tr><td>T5</td><td>Is the impact on data and the database clear enough to estimate?</td><td>Yes</td><td></td></tr>
+<tr><td>T6</td><td>Is it clear how the change and its failure will be observable in production?</td><td>Yes</td><td></td></tr>
+<tr><td>D1</td><td>Are all external dependencies and required inputs identified?</td><td>Yes</td><td></td></tr>
+<tr><td>D2</td><td>Does every unresolved dependency have a known status, owner and deadline?</td><td>Unclear</td><td>⚠ note missing</td></tr>
+<tr><td>Q1</td><td>Are the relevant failure scenarios that must be verified identified?</td><td>Yes</td><td></td></tr>
+<tr><td>Q2</td><td>Is the impact on existing functionality and the regression scope clear?</td><td>Yes</td><td></td></tr>
+<tr><td>Q3</td><td>Is the required test data identified and available or realistically obtainable?</td><td>Yes</td><td></td></tr>
+</tbody></table>
+<p><strong>Refinement outcome:</strong> Ready to estimate with open actions</p>
+<p><strong>Justification:</strong> D2 is being clarified.</p>
+<p><strong>Open actions</strong></p>
+<table><thead><tr>
+<th>Action or decision</th>
+<th>Owner</th>
+<th>Due</th>
+<th>Impact</th>
+</tr></thead><tbody>
+<tr><td>Confirm owner of dependency</td><td>ann</td><td>2026-10-20</td><td>Blocks development</td></tr>
+</tbody></table>
+<p><strong>Estimate:</strong> 5</p>"
+`;
+
+exports[`renderers > markdown escapes pipes 1`] = `
+"### Refinement Checklist — PROJ-123
+
+| # | Question | Answer | Note |
+| --- | --- | --- | --- |
+| G1 | Is the expected benefit or outcome for the user, stakeholder or system clear? | Yes |  |
+| G2 | Is it clear what the ticket includes and what is out of scope? | Yes |  |
+| B1 | Is the required behaviour described concretely and verifiably? | Yes |  |
+| B2 | Is it clear how the system should behave in relevant edge cases? | Yes |  |
+| B3 | For UI changes, is a sufficiently concrete UI/UX design available? | N/A |  |
+| T1 | Are the affected systems and components known well enough to estimate? | Yes |  |
+| T2 | Is the likely approach known well enough to estimate? | Yes |  |
+| T3 | Are the required API and integration changes clear enough to estimate? | Yes |  |
+| T4 | Are the API changes backward compatible? | No | Accepted <break><br>Concern (bob): breaks \\| v1 |
+| T5 | Is the impact on data and the database clear enough to estimate? | Yes |  |
+| T6 | Is it clear how the change and its failure will be observable in production? | Yes |  |
+| D1 | Are all external dependencies and required inputs identified? | Yes |  |
+| D2 | Does every unresolved dependency have a known status, owner and deadline? | Unclear | ⚠ note missing |
+| Q1 | Are the relevant failure scenarios that must be verified identified? | Yes |  |
+| Q2 | Is the impact on existing functionality and the regression scope clear? | Yes |  |
+| Q3 | Is the required test data identified and available or realistically obtainable? | Yes |  |
+
+**Refinement outcome:** Ready to estimate with open actions
+
+**Justification:** D2 is being clarified.
+
+**Open actions**
+
+| Action or decision | Owner | Due | Impact |
+| --- | --- | --- | --- |
+| Confirm owner of dependency | ann | 2026-10-20 | Blocks development |
+
+**Estimate:** 5
+"
+`;
+
+exports[`renderers > plain text is readable 1`] = `
+"Refinement Checklist — PROJ-123
+
+G1  Yes  Is the expected benefit or outcome for the user, stakeholder or system clear?
+G2  Yes  Is it clear what the ticket includes and what is out of scope?
+B1  Yes  Is the required behaviour described concretely and verifiably?
+B2  Yes  Is it clear how the system should behave in relevant edge cases?
+B3  N/A  For UI changes, is a sufficiently concrete UI/UX design available?
+T1  Yes  Are the affected systems and components known well enough to estimate?
+T2  Yes  Is the likely approach known well enough to estimate?
+T3  Yes  Are the required API and integration changes clear enough to estimate?
+T4  No  Are the API changes backward compatible?
+      Accepted <break>
+      Concern (bob): breaks | v1
+T5  Yes  Is the impact on data and the database clear enough to estimate?
+T6  Yes  Is it clear how the change and its failure will be observable in production?
+D1  Yes  Are all external dependencies and required inputs identified?
+D2  Unclear  Does every unresolved dependency have a known status, owner and deadline?
+      ⚠ note missing
+Q1  Yes  Are the relevant failure scenarios that must be verified identified?
+Q2  Yes  Is the impact on existing functionality and the regression scope clear?
+Q3  Yes  Is the required test data identified and available or realistically obtainable?
+
+Refinement outcome: Ready to estimate with open actions
+Justification: D2 is being clarified.
+
+Open actions:
+- Confirm owner of dependency | ann | 2026-10-20 | Blocks development
+
+Estimate: 5
+"
+`;

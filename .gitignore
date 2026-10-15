@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+
+# Team-specific material (checklists, notes) stays out of the repository
+/private/
